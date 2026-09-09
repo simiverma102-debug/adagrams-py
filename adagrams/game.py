@@ -30,16 +30,16 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
     }
-    hand = []
+    hand = []                                    #hand of 10 letters
 
-    for i in range(10):
-        index = randint(0, len(LETTER_POOL) - 1)
-        letter = list(LETTER_POOL.keys())[index]
-
-        hand.append(letter)
-        LETTER_POOL[letter] -= 1
-        if LETTER_POOL[letter] == 0:
-            del LETTER_POOL[letter]
+    for i in range(10):                          #given the range of 10 letters
+        index = randint(0, len(LETTER_POOL) - 1) #(0, 26 -1) -- (0, 25)
+        letter = list(LETTER_POOL.keys())[index] #take keys from LETTER_POOL and convert them into list
+                                                 # whatever index got picked from 0-25, that letter gets picked from the LETTER_POOL
+        hand.append(letter)                      #add the letter to the hand list
+        LETTER_POOL[letter] -= 1                 #decrease the letter by 1 from LETTER_POOL
+        if LETTER_POOL[letter] == 0:             #if Letter count is already 0
+            del LETTER_POOL[letter]              #delete the letter from pool
 
     return hand
     
