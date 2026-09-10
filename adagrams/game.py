@@ -111,4 +111,4 @@ def get_highest_word_score(word_list):
             elif len(best_word)!= 10 and len(word) < len(best_word): #word with fewer letters is preferred unless its 10 letters long
                 best_word = word                #word will become best_word        
             
-    return best_word, highest_score             #return tuple (best_word, highest_score)
+    return best_word, highest_score           #return tuple (best_word, highest_score)
