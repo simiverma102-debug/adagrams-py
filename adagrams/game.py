@@ -106,8 +106,8 @@ def get_highest_word_score(word_list):
             highest_score = score               #highest_score will be updated to new score
             best_word = word                    #best_word will also gets updated to new word
         elif score == highest_score:            #if score is equal to highest_score
-            if len(word) == 10 and len(best_word)!=10:
-                best_word = word
+            if len(word) == 10 and len(best_word)!=10:  #word with 10 letters is preferred
+                best_word = word                #word with same score but 10 letters becomes best_word     
             elif len(best_word)!= 10 and len(word) < len(best_word): #word with fewer letters is preferred unless its 10 letters long
                 best_word = word                #word will become best_word        
             
