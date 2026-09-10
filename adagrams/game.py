@@ -46,7 +46,6 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    word = word.upper()                          # word we want to check
     letter_bank = letter_bank.copy()
     for letter in word:
         if letter not in letter_bank:
@@ -61,6 +60,7 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
+    
     score_chart = {
         'A': 1, 
         'B': 3, 
@@ -90,7 +90,7 @@ def score_word(word):
         'Z': 10
     }
     score = 0
-    
+    word = word.upper()
     for letter in word:
         score += score_chart[letter]
     if len(word) >= 7:
