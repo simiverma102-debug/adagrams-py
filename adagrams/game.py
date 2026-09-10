@@ -46,17 +46,13 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    letter_bank = letter_bank.copy()
-    for letter in word:
-        if letter not in letter_bank:
-            return False
-        letter_bank.remove(letter)
-
-    return True    
-
-    
-
-#we need to check whether we can make the word with the letters in our hand
+    word = word.upper()
+    letter_bank = letter_bank.copy()            #created a copy so letters doesn't change the letter_bank list
+    for letter in word:                         #iterating over letters in the word
+        if letter not in letter_bank:           #if letter is not in the letter_bank
+            return False                        #return false
+        letter_bank.remove(letter)              #else remove the letter from letter_bank
+    return True                                 #return true if all the letters are there in letter_bank to make that word
 
 
 def score_word(word):
@@ -89,16 +85,30 @@ def score_word(word):
         'Y': 4, 
         'Z': 10
     }
-    score = 0
-    word = word.upper()
-    for letter in word:
-        score += score_chart[letter]
-    if len(word) >= 7:
-        score += 8
-        
-    return score
+    score = 0                            #created empty score variable to store score
+    word = word.upper()                  #covert the word into upper case if it is not already
+    for letter in word:                  #iterating over letters in the word
+        score += score_chart[letter]     #score of the letter is added to the variable score
+    if len(word) >= 7:                   #if the len of word is 7 or more 
+        score += 8                       #additional 8 points to the score                 
+                                         #if condition is outside for loop because its a separate condition
+    return score                         #return final score
 
 
 
 def get_highest_word_score(word_list):
-    pass
+    #check the score of word and return waysto find the highest score
+    highest_score = 0
+    best_word = ""
+    for word in word_list:                      #iterating words over the word_list
+        score = score_word(word)                #gets the score using score_word function
+        if score > highest_score:               #if score is greater than highest_score
+            highest_score = score               #highest_score will be updated to new score
+            best_word = word                    #best_word will also gets updated to new word
+        elif score == highest_score:            #if score is equal to highest_score
+            if len(word) == 10 and len(best_word)!=10:
+                best_word = word
+            elif len(best_word)!= 10 and len(word) < len(best_word): #word with fewer letters is preferred unless its 10 letters long
+                best_word = word                #word will become best_word        
+            
+    return best_word, highest_score             #return tuple (best_word, highest_score)
